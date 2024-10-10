@@ -34,7 +34,7 @@ const UserHeader = () => {
             Mark
           </Text>
           <Flex gap={2} alignItems={"center"}>
-            <Text fontSize={"sm"}>markxukerburg</Text>
+            <Text fontSize={"sm"}>markzukerburg</Text>
             <Text
               fontSize={"xs"}
               bg={"gray.dark"}
