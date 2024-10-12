@@ -8,7 +8,7 @@ connectDB();
 const app = express();
 
 const PORT = process.env.PORT || 5000;
-
+// Middlewares
 app.use(express.json()); // to parse json data in the req.body
 app.use(express.urlencoded({ extended: true })); // To parse form data in the req.body
 app.use(cookieParser());
