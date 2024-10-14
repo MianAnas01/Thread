@@ -9,7 +9,7 @@ const signupUser = async (req, res) => {
     const user = await User.findOne({ $or: [{ email }, { username }] });
 
     if (user) {
-      return res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({ error: "User already exists" });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -32,10 +32,10 @@ const signupUser = async (req, res) => {
         username: newUser.username,
       });
     } else {
-      res.status(400).json({ message: "Invalid user data" });
+      res.status(400).json({ error: "Invalid user data" });
     }
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ error: err.message });
     console.log("Error in signpUser", err.message);
   }
 };
