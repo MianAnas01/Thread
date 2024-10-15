@@ -1,7 +1,7 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import generateTokenAndSetCookie from "../utils/helpers/generateTokenAndSetCookie.js";
-
+import { v2 as cloudinary } from "cloudinary";
 // signup
 const signupUser = async (req, res) => {
   try {
@@ -30,6 +30,8 @@ const signupUser = async (req, res) => {
         name: newUser.name,
         email: newUser.email,
         username: newUser.username,
+        bio: newUser.bio,
+        profilePic: newUser.profilePic,
       });
     } else {
       res.status(400).json({ error: "Invalid user data" });
@@ -121,7 +123,7 @@ const followUnfollowUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const { name, email, username, password, bio } = req.body;
-  // let { profilePic } = req.body;
+  let { profilePic } = req.body;
 
   const userId = req.user._id;
   try {
@@ -139,26 +141,26 @@ const updateUser = async (req, res) => {
       user.password = hashedPassword;
     }
 
-    // if (profilePic) {
-    //   if (user.profilePic) {
-    //     await cloudinary.uploader.destroy(
-    //       user.profilePic.split("/").pop().split(".")[0]
-    //     );
-    //   }
+    if (profilePic) {
+      if (user.profilePic) {
+        await cloudinary.uploader.destroy(
+          user.profilePic.split("/").pop().split(".")[0]
+        );
+      }
 
-    //   const uploadedResponse = await cloudinary.uploader.upload(profilePic);
-    //   profilePic = uploadedResponse.secure_url;
-    // }
+      const uploadedResponse = await cloudinary.uploader.upload(profilePic);
+      profilePic = uploadedResponse.secure_url;
+    }
 
     user.name = name || user.name;
     user.email = email || user.email;
     user.username = username || user.username;
-    // user.profilePic = profilePic || user.profilePic;
+    user.profilePic = profilePic || user.profilePic;
     user.bio = bio || user.bio;
 
     user = await user.save();
 
-    // // Find all posts that this user replied and update username and userProfilePic fields
+    // Find all posts that this user replied and update username and userProfilePic fields
     // await Post.updateMany(
     // 	{ "replies.userId": userId },
     // 	{
@@ -170,12 +172,10 @@ const updateUser = async (req, res) => {
     // 	{ arrayFilters: [{ "reply.userId": userId }] }
     // );
 
-    // // password should be null in response
-    // user.password = null;
+    // password should be null in response
+    user.password = null;
 
-    res
-      .status(200)
-      .json({ message: "User profile updated successfully", user });
+    res.status(200).json(user);
   } catch (err) {
     res.status(500).json({ error: err.message });
     console.log("Error in updateUser: ", err.message);
