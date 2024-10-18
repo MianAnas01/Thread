@@ -34,7 +34,7 @@ const UserPost = ({ postImg, postTitle, likes, replies }) => {
   };
 
   return (
-    <Link to={"/mark/post/1"}>
+    <Link to={"/markzuckerberg/post/1"}>
       <Flex gap={3} mb={4} py={5}>
         <Flex flexDirection={"column"} alignItems={"center"}>
           <Avatar size="md" name="Mark" src="/zuck-avatar.png" />

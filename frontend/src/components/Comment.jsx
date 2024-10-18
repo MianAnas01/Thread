@@ -1,8 +1,16 @@
-import { Avatar, Divider, Flex, Text } from "@chakra-ui/react";
+import { Avatar, Flex, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import Actions from "./Actions";
-const Comment = ({ userAvatar, createdAt, comment, username, likes }) => {
+
+const Comment = ({
+  likes,
+  replies,
+  createdAt,
+  username,
+  userAvatar,
+  comments,
+}) => {
   const [liked, setLiked] = useState(false);
   return (
     <>
@@ -18,21 +26,21 @@ const Comment = ({ userAvatar, createdAt, comment, username, likes }) => {
               {username}
             </Text>
             <Flex gap={2} alignItems={"center"}>
-              <Text fontSize={"sm"} color={"gray.light"}>
-                {createdAt}
-              </Text>
+              <Text>{createdAt}</Text>
               <BsThreeDots />
             </Flex>
           </Flex>
-          <Text>{comment}</Text>
-          <Actions liked={liked} setLiked={setLiked} />
-          <Text fontSize={"sm"} color={"gray.light"}>
-            {likes + (liked ? 1 : 0)} likes
-          </Text>
+          <Text> {comments}</Text>
+          <Actions
+            liked={liked}
+            setLiked={setLiked}
+            likes={likes}
+            replies={replies}
+          />
         </Flex>
       </Flex>
-      <Divider />
     </>
   );
 };
+
 export default Comment;

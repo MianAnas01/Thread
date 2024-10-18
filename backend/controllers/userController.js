@@ -1,7 +1,7 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import generateTokenAndSetCookie from "../utils/helpers/generateTokenAndSetCookie.js";
-import { v2 as cloudinary } from "cloudinary";
+// import { v2 as cloudinary } from "cloudinary";
 // signup
 const signupUser = async (req, res) => {
   try {
@@ -141,21 +141,21 @@ const updateUser = async (req, res) => {
       user.password = hashedPassword;
     }
 
-    if (profilePic) {
-      if (user.profilePic) {
-        await cloudinary.uploader.destroy(
-          user.profilePic.split("/").pop().split(".")[0]
-        );
-      }
+    // if (profilePic) {
+    //   if (user.profilePic) {
+    //     await cloudinary.uploader.destroy(
+    //       user.profilePic.split("/").pop().split(".")[0]
+    //     );
+    //   }
 
-      const uploadedResponse = await cloudinary.uploader.upload(profilePic);
-      profilePic = uploadedResponse.secure_url;
-    }
+    //   const uploadedResponse = await cloudinary.uploader.upload(profilePic);
+    //   profilePic = uploadedResponse.secure_url;
+    // }
 
     user.name = name || user.name;
     user.email = email || user.email;
     user.username = username || user.username;
-    user.profilePic = profilePic || user.profilePic;
+    // user.profilePic = profilePic || user.profilePic;
     user.bio = bio || user.bio;
 
     user = await user.save();

@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import userAtom from "../atoms/userAtoms.js";
+import userAtom from "../atoms/userAtom.js";
 import usePreviewImg from "../hooks/usePreviewImg.js";
 import useShowToast from "../hooks/useShowToast.js";
 

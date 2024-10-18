@@ -1,8 +1,8 @@
-import { useSetRecoilState } from "recoil";
-import userAtom from "../atoms/userAtoms.js";
-import { FiLogOut } from "react-icons/fi";
-import useShowToast from "../hooks/useShowToast.js";
 import { Button } from "@chakra-ui/react";
+import { useSetRecoilState } from "recoil";
+import userAtom from "../atoms/userAtom.js";
+import useShowToast from "../hooks/useShowToast.js";
+import { FiLogOut } from "react-icons/fi";
 
 const LogoutButton = () => {
   const setUser = useSetRecoilState(userAtom);
@@ -37,7 +37,6 @@ const LogoutButton = () => {
       size={"sm"}
       onClick={handleLogout}
     >
-      Logout
       <FiLogOut size={20} />
     </Button>
   );

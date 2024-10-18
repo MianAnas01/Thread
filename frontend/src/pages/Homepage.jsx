@@ -1,13 +1,13 @@
 import { Button, Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-const Homepage = () => {
+const HomePage = () => {
   return (
-    <Link to={"/mark"}>
+    <Link to={"/markzuckerberg"}>
       <Flex w={"full"} justifyContent={"center"}>
         <Button mx={"aqto"}>Visit Profile Page</Button>
       </Flex>
     </Link>
   );
 };
-export default Homepage;
+export default HomePage;
