@@ -124,7 +124,7 @@ const PostPage = ({ likes, replies }) => {
       <Flex gap={3} mb={4} py={5}>
         {/* Left section with Avatar and smaller Avatars */}
         <Flex flexDirection={"column"} alignItems={"center"}>
-          <Avatar size="md" name="M Iftikhar" src="/pic2.jpg" />
+          <Avatar size="md" name="M Anas" src="/pic2.jpg" />
         </Flex>
 
         {/* Right section with post details */}
@@ -132,7 +132,7 @@ const PostPage = ({ likes, replies }) => {
           <Flex justifyContent={"space-between"} w={"full"}>
             <Flex w={"full"} alignItems={"center"}>
               <Text fontSize={"sm"} fontWeight={"bold"}>
-                M Iftikhar
+                M Anas
               </Text>
               <Image src="/verified.png" w={4} h={4} ml={1} alt="Verified" />
             </Flex>
