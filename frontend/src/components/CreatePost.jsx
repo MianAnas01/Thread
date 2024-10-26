@@ -24,7 +24,7 @@ import { BsFillImageFill } from "react-icons/bs";
 import { useRecoilState, useRecoilValue } from "recoil";
 import userAtom from "../atoms/userAtom.js";
 import useShowToast from "../hooks/useShowToast.js";
-import postsAtom from "../atoms/postsAtoms.js";
+import postsAtom from "../atoms/postsAtom.js";
 import { useParams } from "react-router-dom";
 
 const MAX_CHAR = 500;
