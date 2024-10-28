@@ -72,6 +72,7 @@ const PostPage = () => {
     );
   }
   if (!currentPost) return null;
+
   return (
     <>
       <Flex>
